@@ -1,0 +1,58 @@
+[package]
+name = "external_app_sync"
+version = "0.1.0"
+edition = "2021"
+authors = ["Cascade"]
+description = "MacOS utility to sync external App Store applications with Launchpad"
+
+[package.metadata.bundle]
+name = "External App Sync"
+identifier = "com.external-app-sync"
+icon = ["icon/32x32.png", "icon/128x128.png", "icon/128x128@2x.png"]
+version = "0.1.0"
+copyright = "Copyright (c) 2025 Cascade. All rights reserved."
+category = "public.app-category.utilities"
+short_description = "Sync external App Store applications with Launchpad"
+long_description = """
+External App Sync is a utility that automatically creates aliases in your Applications folder
+for apps stored on an external drive. It monitors the external folder for changes and updates
+the aliases accordingly.
+"""
+osx_url_schemes = ["external-app-sync"]
+osx_minimum_system_version = "10.15"
+
+[package.metadata.bundle.bin.external_app_sync_gui]
+name = "External App Sync"
+identifier = "com.external-app-sync.gui"
+
+[package.metadata.bundle.bin.external_app_sync_daemon]
+name = "External App Sync Daemon"
+identifier = "com.external-app-sync.daemon"
+
+[dependencies]
+tokio = { version = "1.35", features = ["full"] }
+notify = "6.1"
+anyhow = "1.0"
+tracing = "0.1"
+tracing-subscriber = "0.3"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+directories = "5.0"
+cocoa = "0.25"
+objc = "0.2"
+core-foundation = "0.9"
+core-graphics = "0.23"
+native-dialog = "0.7"
+dirs = "5.0"
+
+[dependencies.iced]
+version = "0.10"
+features = ["tokio"]
+
+[[bin]]
+name = "external_app_sync_gui"
+path = "src/bin/gui.rs"
+
+[[bin]]
+name = "external_app_sync_daemon"
+path = "src/bin/daemon.rs"
