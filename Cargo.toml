@@ -49,6 +49,13 @@ dirs = "5.0"
 version = "0.10"
 features = ["tokio"]
 
+[dev-dependencies]
+mockall = "0.12"
+test-case = "3.3"
+pretty_assertions = "1.4"
+tempfile = "3.9"
+serial_test = "2.0"
+
 [[bin]]
 name = "external_app_sync_gui"
 path = "src/bin/gui.rs"
